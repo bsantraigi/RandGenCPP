@@ -12,8 +12,8 @@ Gamrnd::~Gamrnd()
 
 double Gamrnd::_get(double alpha, double beta)
 {
-	param._Alpha = 10;
-	param._Beta = 3;
+	param._Alpha = alpha;
+	param._Beta = beta;
 	gd.param(param);
 	return gd(generator);
 }

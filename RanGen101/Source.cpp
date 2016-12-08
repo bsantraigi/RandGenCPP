@@ -2,25 +2,19 @@
 #include <random>
 #include "Timer.h"
 #include "Gamrnd.h"
+
+#include <Eigen/Cholesky>
+#include <Eigen/Dense>
+
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
+
 using namespace std;
 
 int main() {
 	Timer timer1;
-	cout << "Random no. Generator:" << endl;
-	{
-		// Generation from same generator
-		default_random_engine generator;
-		gamma_distribution<double> gd;
-		double v;
-		int iter = 10000;
-		timer1.start();
-		for (int i = 0; i < iter; i++)
-		{
-			v = gd(generator);
-		}
-		timer1.stop();
-	}
-
+	
+	// Time gamrnd
 	{
 		// generation from different generator
 		default_random_engine generator;
@@ -38,7 +32,7 @@ int main() {
 		}
 		timer1.stop(iter);
 	}
-
+	// Time Gamrnd class
 	{
 		double v;
 		int iter = 10000;
@@ -48,6 +42,16 @@ int main() {
 			v = Gamrnd::get(10, 3);
 		}
 		timer1.stop(iter);
+
+	}
+
+	// Mvnrnd base code
+	{
+		MatrixXd covMat;
+		VectorXd mu;
+		VectorXd x;
+
+		MatrixXd L; // From Cholesky decomposition
 
 	}
 }
