@@ -13,7 +13,9 @@ Gamrnd::~Gamrnd()
 double Gamrnd::_get(double alpha, double beta)
 {
 	param._Alpha = alpha;
-	param._Beta = beta;
+	// param._Beta is actually the scale parameter, theta 
+	// whereas we are concerned with the rate parameter
+	param._Beta = 1/beta;
 	gd.param(param);
 	return gd(generator);
 }
